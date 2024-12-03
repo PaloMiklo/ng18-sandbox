@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { interval, Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {interval, Observable} from 'rxjs';
+import {shareReplay, startWith} from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class YelderService {
-  private increment$ = interval(1500).pipe(startWith(0))
+  count$ = (): Observable<number> => interval(1500).pipe(startWith(0), shareReplay({refCount: true, bufferSize: 1}))
 
-  star$ = (): Observable<number> => this.increment$;
+  random = (): number => Math.floor(Math.random() * 10);
 }

@@ -1,25 +1,68 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './_home/home.component';
-import { SignalComponent } from './signal/signal.component';
-import { BsubjectComponent } from './bsubject/bsubject.component';
-import { ToSignalComponent } from './toSignal/toSignal.component';
-import { BSubjetComputedComponent } from './bsubject/bsubject-computed.component';
-import { SignalComputedComponent } from './signal/signal-computed.compontent';
-import { BSubjetComputedMultipleComponent } from './bsubject/bsubject-computed-multiple.component';
-import { SignalComputedMultipleComponent } from './signal/signal-computed-multiple.component';
-import { ObservableSideEffectComponent } from './effect/observable-side-effect.component';
-import { SignalSideEffectComponent } from './effect/signal-side-effect.component';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'signal', component: SignalComponent },
-    { path: 'signalComputed', component: SignalComputedComponent },
-    { path: 'signalComputedMultiple', component: SignalComputedMultipleComponent },
-    { path: 'signalSideEffect', component: SignalSideEffectComponent },
-    { path: 'bsubject', component: BsubjectComponent },
-    { path: 'toSignal', component: ToSignalComponent },
-    { path: 'bsubjectComputed', component: BSubjetComputedComponent },
-    { path: 'bsubjectComputedMultiple', component: BSubjetComputedMultipleComponent },
-    { path: 'observableSideEffect', component: ObservableSideEffectComponent },
-    { path: '**', component: HomeComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./_home/home.component').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'signal',
+    loadComponent: () =>
+      import('./signal/signal.component').then((m) => m.SignalComponent),
+  },
+  {
+    path: 'signalComputed',
+    loadComponent: () =>
+      import('./signal/signal-computed.compontent').then(
+        (m) => m.SignalComputedComponent
+      ),
+  },
+  {
+    path: 'signalComputedMultiple',
+    loadComponent: () =>
+      import('./signal/signal-computed-multiple.component').then(
+        (m) => m.SignalComputedMultipleComponent
+      ),
+  },
+  {
+    path: 'signalSideEffect',
+    loadComponent: () =>
+      import('./effect/signal-side-effect.component').then(
+        (m) => m.SignalSideEffectComponent
+      ),
+  },
+  {
+    path: 'bsubject',
+    loadComponent: () =>
+      import('./bsubject/bsubject.component').then((m) => m.BsubjectComponent),
+  },
+  {
+    path: 'toSignal',
+    loadComponent: () =>
+      import('./toSignal/toSignal.component').then((m) => m.ToSignalComponent),
+  },
+  {
+    path: 'bsubjectComputed',
+    loadComponent: () =>
+      import('./bsubject/bsubject-computed.component').then(
+        (m) => m.BSubjetComputedComponent
+      ),
+  },
+  {
+    path: 'bsubjectComputedMultiple',
+    loadComponent: () =>
+      import('./bsubject/bsubject-computed-multiple.component').then(
+        (m) => m.BSubjetComputedMultipleComponent
+      ),
+  },
+  {
+    path: 'observableSideEffect',
+    loadComponent: () =>
+      import('./effect/observable-side-effect.component').then(
+        (m) => m.ObservableSideEffectComponent
+      ),
+  },
+  {path: '**', redirectTo: '/home'},
 ];
