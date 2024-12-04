@@ -32,7 +32,7 @@ export class BSubjetComputedMultipleComponent {
 
   double$ = combineLatest([this.counterBehaviorSubject1, this.counterBehaviorSubject2]).pipe(
     map(([v1, v2]) => {
-      // emitted for each change of any source observable -> diamond problem -> emits incorrect/transient value
+      // <>
       const val = v1 * v2;
       console.log(`Combine latest triggered: ${v1} * ${v2} = ${val}`);
       return val;

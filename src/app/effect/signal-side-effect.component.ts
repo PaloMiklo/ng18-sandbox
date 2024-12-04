@@ -20,10 +20,9 @@ import {toSignal} from '@angular/core/rxjs-interop';
 })
 export class SignalSideEffectComponent {
   service = inject(YelderService);
-  counter = toSignal<number, number>(this.service.count$(), {initialValue: 0});
+  counter = toSignal<number, number>(this.service.start$(), {initialValue: 0});
 
   constructor() {
-    // distinct until changed by default -> setting the same value twice in a row won't trigger the effect
     effect(() => console.log(`Triggered side effect as value of the signal called counter changed -> ${this.counter()}`));
   }
 

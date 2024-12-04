@@ -13,5 +13,5 @@ import {YelderService} from '../yelder.service';
 })
 export class ToSignalComponent {
   service = inject(YelderService);
-  counter = toSignal<number, number>(this.service.count$(), {initialValue: 0}); // -> turns observable into signal
+  counter = toSignal<number, number>(this.service.start$(), {initialValue: 0}); // -> turns $ into signal
 }

@@ -1,8 +1,7 @@
 import {CommonModule} from '@angular/common';
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {distinctUntilChanged, tap} from 'rxjs/operators';
 import {YelderService} from '../yelder.service';
-import {Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-bsubject-computed-multiple-side-effect',
@@ -22,24 +21,10 @@ import {Observable, Subject} from "rxjs";
     </div>
   `
 })
-export class ObservableSideEffectComponent implements OnInit, OnDestroy {
+export class ObservableSideEffectComponent {
   service = inject(YelderService);
-  source$!: Observable<number>;
-  private _destroy$ = new Subject<void>();
-
-  ngOnInit() {
-    this.source$ = this.service.count$().pipe(
-      tap((i: number) => {
-        // side effect triggered for each new value emitted and for each template subscription
-        console.log(`Triggered side effect as source observable called counter emitted new value changed -> ${i}`)
-      }),
-      distinctUntilChanged()
-    );
-  }
-
-  ngOnDestroy() {
-    console.log('Subscriptions A destroyed!');
-    this._destroy$.next();
-    this._destroy$.complete();
-  }
+  source$ = this.service.start$().pipe(
+    tap((i: number) => console.log(`Triggered side effect as source observable called counter emitted new value changed -> ${i}`)),
+    distinctUntilChanged()
+  );
 }
