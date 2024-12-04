@@ -16,6 +16,6 @@ import { Component, signal } from '@angular/core';
 export class SignalComponent {
   counterSignal = signal(0);
 
-  increment() { this.counterSignal.update((i) => i + 1); }
-  decrement() { this.counterSignal.update((i) => i - 1); }
+  increment() { this.counterSignal.update((i: number) => i + 1); }
+  decrement() { this.counterSignal.update((i: number) => i - 1); }
 }

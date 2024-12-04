@@ -16,8 +16,8 @@ import { Component, computed, signal } from '@angular/core';
 export class SignalComputedComponent {
   counterSignal = signal(0);
 
-  increment() { this.counterSignal.update((i) => i + 1); }
-  decrement() { this.counterSignal.update((i) => i - 1); }
+  increment() { this.counterSignal.update((i: number) => i + 1); }
+  decrement() { this.counterSignal.update((i: number) => i - 1); }
 
-  double = computed(() => this.counterSignal() * 2); // -> direct access -> no subscriptions
+  double = computed(() => this.counterSignal() * 2);
 }

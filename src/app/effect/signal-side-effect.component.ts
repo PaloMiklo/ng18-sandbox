@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {Component, effect, inject} from '@angular/core';
-import {YelderService} from '../yelder.service';
 import {toSignal} from '@angular/core/rxjs-interop';
+import {YelderService} from '../yelder.service';
 
 @Component({
   selector: 'app-bsubject-computed-multiple-side-effect',
@@ -25,5 +25,4 @@ export class SignalSideEffectComponent {
   constructor() {
     effect(() => console.log(`Triggered side effect as value of the signal called counter changed -> ${this.counter()}`));
   }
-
 }

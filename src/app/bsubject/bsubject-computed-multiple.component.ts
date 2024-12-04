@@ -14,7 +14,7 @@ import {YelderService} from "../yelder.service";
     </div>
     <div class="mt-3 text-center">
       <h3>Counter Value Doubled: {{ double$ | async }}</h3>
-      <!--  <h3>Counter Value Doubled: {{ double$ | async }}</h3>-->
+<!--        <h3>Counter Value Doubled: {{ double$ | async }}</h3>-->
     </div>
   `
 })

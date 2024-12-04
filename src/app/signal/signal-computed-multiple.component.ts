@@ -28,7 +28,6 @@ export class SignalComputedMultipleComponent {
   }
 
   double = computed(() => {
-    // glitch free computation -> computation happens in an atomic manner, avoids the diamond problem and transient computations
     const val = this.signal1() * this.signal2();
     console.log(`Computed Signal Triggered ${this.signal1()} * ${this.signal2()} = ${val}`);
     return val;

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-bsubject-computed',
@@ -18,10 +18,10 @@ import { map } from 'rxjs/operators';
   `
 })
 export class BSubjetComputedComponent {
-    counterBehaviorSubject = new BehaviorSubject<number>(0);
+    counterBehaviorSubject$ = new BehaviorSubject<number>(0);
 
-    increment() { this.counterBehaviorSubject.next(this.counterBehaviorSubject.value + 1); }
-    decrement() { this.counterBehaviorSubject.next(this.counterBehaviorSubject.value - 1); }
+    increment() { this.counterBehaviorSubject$.next(this.counterBehaviorSubject$.value + 1); }
+    decrement() { this.counterBehaviorSubject$.next(this.counterBehaviorSubject$.value - 1); }
 
-    double$ = this.counterBehaviorSubject.pipe(map((i: number) => i * 2));  // -> turns into observable -> handle subscriptions -> triggers side effects -> requires rxjs knowledge -> starts to be a bit comprehensive 
+    double$ = this.counterBehaviorSubject$.pipe(map((i: number) => i * 2), distinctUntilChanged());
 }
